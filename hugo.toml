@@ -1,0 +1,14 @@
+baseURL = "https://example.com/"
+defaultContentLanguage = "en"
+title = "Hugo Forum Topic"
+theme = "hugo"
+disableKinds = ['RSS', 'sitemap', 'taxonomy', 'term']
+
+[module]
+   [[module.mounts]]
+      source = "static"
+      target = "static"
+   [[module.mounts]]
+      source = "static"
+      target = "static"
+      excludeFiles = [".keep"]
