@@ -1,0 +1,4 @@
+{{- $styleName := add "style-" . }}
+{{- with resources.Get (add "css/" $styleName ".css") -}}
+   MYLINK:{{ .RelPermalink }}
+{{- end }}
