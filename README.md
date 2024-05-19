@@ -1,8 +1,8 @@
 # Hugo Forum Playground
 
-This is my playground repository for Hugo.
+My playground repository for Hugo.
 
-This is a bare Hugo setup as described in the docs with some slight additions.
+A nearly bare Hugo setup as described in the docs (with some minor additions).
 
 ## create a bare themed Hugo site
 
