@@ -1,0 +1,67 @@
+baseURL = 'https://example.org/'
+defaultContentLanguage = 'en'
+defaultContentLanguageInSubdir = true
+
+# -----------------------------------------------------------------------------
+# Languages
+# -----------------------------------------------------------------------------
+
+[languages.en]
+languageCode = 'en-US'
+languageDirection = 'ltr'
+languageName = 'English'
+title = 'My New Hugo Site (en)'
+weight = 1
+
+[languages.de]
+languageCode = 'de-DE'
+languageDirection = 'ltr'
+languageName = 'Deutsch'
+title = 'My New Hugo Site (de)'
+weight = 2
+
+# -----------------------------------------------------------------------------
+# Menu - English
+# -----------------------------------------------------------------------------
+
+[[languages.en.menus.main]]
+name = 'Home'
+pageRef = '/'
+weight = 10
+
+[[languages.en.menus.main]]
+name = 'Posts'
+pageRef = '/posts'
+weight = 20
+
+[[languages.en.menus.main]]
+name = 'Tags'
+pageRef = '/tags'
+weight = 30
+
+# -----------------------------------------------------------------------------
+# Menu - Deutsch
+# -----------------------------------------------------------------------------
+
+[[languages.de.menus.main]]
+name = 'Home'
+pageRef = '/'
+weight = 10
+
+[[languages.de.menus.main]]
+name = 'Posts'
+pageRef = '/posts'
+weight = 20
+
+[[languages.de.menus.main]]
+name = 'Tags'
+pageRef = '/tags'
+weight = 30
+
+# -----------------------------------------------------------------------------
+# Modules
+# -----------------------------------------------------------------------------
+
+[module.hugoVersion]
+extended = true
+min = '0.134.1'

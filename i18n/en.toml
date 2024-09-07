@@ -1,0 +1,3 @@
+# See https://gohugo.io/functions/lang/translate/ for details
+
+copyright_notice = "Copyright {{ . }}. All rights reserved."
