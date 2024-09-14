@@ -12,3 +12,6 @@ disableKinds = ['RSS', 'sitemap', 'taxonomy', 'term']
       source = "static"
       target = "static"
       excludeFiles = [".keep"]
+
+  [[module.imports]]
+    path = "github.com/irkode/bulma4hugo"
