@@ -1,7 +1,5 @@
 {{ define "main" }}
-  {{ .Content }}
-  {{ range site.RegularPages }}
-    <h2><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></h2>
-    {{ .Summary }}
-  {{ end }}
+   {{ .Content }}
+   <button class="btn rounded-full bg-red-dark-600">Tailwind</button>
+   <button class="btn rounded-full bg-blue-light-600">Tailwind</button>
 {{ end }}

@@ -1,14 +1,15 @@
-baseURL = "https://example.com/"
+baseURL                = "https://example.com/"
 defaultContentLanguage = "en"
-title = "Hugo Forum Topic"
-theme = "hugo"
-disableKinds = ['RSS', 'sitemap', 'taxonomy', 'term']
+title                  = "Hugo Forum Topic"
+theme                  = "hugo"
+disableKinds           = ['RSS', 'sitemap', 'taxonomy', 'term']
 
-[module]
-   [[module.mounts]]
-      source = "static"
-      target = "static"
-   [[module.mounts]]
-      source = "static"
-      target = "static"
-      excludeFiles = [".keep"]
+[build]
+   [build.buildStats]
+      enable = true
+   [[build.cachebusters]]
+      source = 'layouts/.*'
+      target = 'css'
+   [[build.cachebusters]]
+      source = './tailwind.config.js'
+      target = 'css'
