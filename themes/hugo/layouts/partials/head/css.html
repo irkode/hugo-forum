@@ -1,9 +1,0 @@
-{{- $t := debug.Timer "postcss" -}}
-{{- with resources.Get "css/custom.css" -}}
-   {{- with . | css.PostCSS | minify -}}
-      <link rel="stylesheet" href="{{ .RelPermalink }}" />
-   {{- end -}}
-{{- else -}}
-   errorf "failed to postprocess"
-{{- end -}}
-{{- $t.Stop -}}

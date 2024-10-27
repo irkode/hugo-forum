@@ -1,15 +1,10 @@
-baseURL                = "https://example.com/"
-defaultContentLanguage = "en"
-title                  = "Hugo Forum Topic"
-theme                  = "hugo"
-disableKinds           = ['RSS', 'sitemap', 'taxonomy', 'term']
+baseURL = 'https://example.org/'
+title = 'Topic-52152'
 
-[build]
-   [build.buildStats]
-      enable = true
-   [[build.cachebusters]]
-      source = 'layouts/.*'
-      target = 'css'
-   [[build.cachebusters]]
-      source = './tailwind.config.js'
-      target = 'css'
+disableKinds = ['sitemap', 'rss', 'taxonomy', 'term']
+
+[markup.goldmark.extensions.passthrough]
+   enable = true
+[markup.goldmark.extensions.passthrough.delimiters]
+   block = [['\[', '\]'], ['$$', '$$']]
+   inline = [['\(', '\)'], ['$', '$']]
