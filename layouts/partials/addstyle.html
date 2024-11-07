@@ -1,4 +1,7 @@
 {{- $styleName := add "style-" . }}
 {{- with resources.Get (add "css/" $styleName ".css") -}}
-   MYLINK:{{ .RelPermalink }}
+   {{- with . | minify -}}
+      {{ warnf .Content }}
+      {{- printf "<style data-name=\"%s\" title=\"%s\">%s</style>" $styleName .RelPermalink .Content | safeHTML -}}
+   {{- end -}}
 {{- end }}
