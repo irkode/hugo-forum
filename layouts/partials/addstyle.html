@@ -1,7 +1,7 @@
-{{- $styleName := add "style-" . }}
-{{- with resources.Get (add "css/" $styleName ".css") -}}
-   {{- with . | minify -}}
-      {{ warnf .Content }}
-      {{- printf "<style data-name=\"%s\" title=\"%s\">%s</style>" $styleName .RelPermalink .Content | safeHTML -}}
-   {{- end -}}
-{{- end }}
+{{ $page := index . 0 }}
+{{ $style := index . 1 }}
+{{ $styles := $page.Store.Get "styles" }}
+{{ if not (in $styles $style) }}
+   {{ warnf "ADD: %s to %s " $style $page }}
+   {{ $page.Store.Add "styles" (slice $style) }}
+{{ end }}

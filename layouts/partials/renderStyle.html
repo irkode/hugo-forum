@@ -1,0 +1,6 @@
+{{ $link := "" }}
+{{ warnf "RESOURCE: %s" . }}
+{{- with resources.Get . -}}
+   {{ $link = .RelPermalink }}
+{{- end }}
+{{ return $link }}

@@ -2,8 +2,18 @@
 <html lang="{{ site.Language.LanguageCode }}" dir="{{ or site.Language.LanguageDirection `ltr` }}">
    <head>
       {{ partial "head.html" . }}
-      MYSTYLES
-      <style data-name="styleinclude"></style>
+      {{ $data := (dict "page" .) }}
+      {{ with (templates.Defer (dict "data" $data)) }}
+         {{ range page.Store.Get "styles" }}
+            {{ warnf "DEFER: %s to %s " . page }}
+            <link rel="stylesheet" href="{{ partialCached "renderStyle" . . }}" />
+         {{ end }}
+         {{ range page.Store.Get "inline" }}
+            {{ warnf "###\n%s\n########" . }}
+            {{ . | safeHTML }}
+            {{ warnf "DEFER INLINE: %s to %s " . page }}
+         {{ end }}
+      {{ end }}
    </head>
    <body>
       <header>
