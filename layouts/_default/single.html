@@ -1,0 +1,45 @@
+{{ define "main" }}
+   <h1>{{ .Title }}</h1>
+
+   <h2>My Code</h2>
+   <ul>
+      {{ $idx := 0 }}
+      {{ $len := sub (len .Site.Taxonomies.tags) 1 }}
+      {{ range $name, $items := .Site.Taxonomies.tags }}
+         <li>
+            <a href="{{- `tags/` | relLangURL -}}{{- $name | urlize | lower -}}">{{- T $name | humanize -}}</a
+            >&nbsp;{{ len $items }}
+            {{- if lt $idx $len -}},{{ end -}}
+         </li>
+         {{ $idx = add $idx 1 }}
+      {{ end }}
+   </ul>
+   <h2>Your code</h2>
+   <li>
+      {{- if isset .Site.Taxonomies "tags" }}
+         {{- if not (eq (len .Site.Taxonomies.tags) 0) }}
+            <ul class="list-unstyled">
+               {{ range $name, $items := .Site.Taxonomies.tags }}
+                  <li class="small">
+                     <a
+                        class="cat-item d-flex justify-content-between text-dark"
+                        href="{{ `tags/` | relLangURL }}{{ $name | urlize | lower }}"
+                        >{{ T $name | humanize }}<span>{{ len $items }}</span></a
+                     >
+                  </li>
+               {{- end }}
+            </ul>
+         {{- end }}
+      {{- end }}
+   </li>
+   {{ $len := sub (len .Params.tags) 1 }}
+   {{ range $k, $v := .Params.tags }}
+   {{- end }}
+
+   {{ $dateMachine := .Date | time.Format "2006-01-02T15:04:05-07:00" }}
+   {{ $dateHuman := .Date | time.Format ":date_long" }}
+   <time datetime="{{ $dateMachine }}">{{ $dateHuman }}</time>
+
+   {{ .Content }}
+   {{ partial "terms.html" (dict "taxonomy" "tags" "page" .) }}
+{{ end }}
