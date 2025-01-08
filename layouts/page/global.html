@@ -1,0 +1,7 @@
+{{- with (templates.Defer (dict "key" "global")) -}}
+   {{- with os.ReadFile "public/en/index.html" -}}
+      {{- . | safeHTML -}}
+   {{- else -}}
+      {{- warnf "notfound" -}}
+   {{- end -}}
+{{- end -}}

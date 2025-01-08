@@ -1,12 +1,15 @@
 baseURL = 'https://example.org/'
 defaultContentLanguage = 'en'
 defaultContentLanguageInSubdir = true
+disableDefaultLanguageRedirect = true
 
+disableKinds = ['sitemap', 'rss', 'taxonomy', 'term']
 # -----------------------------------------------------------------------------
 # Languages
 # -----------------------------------------------------------------------------
 
 [languages.en]
+contentDir = 'content/en'
 languageCode = 'en-US'
 languageDirection = 'ltr'
 languageName = 'English'
@@ -14,6 +17,7 @@ title = 'My New Hugo Site (en)'
 weight = 1
 
 [languages.de]
+contentDir = 'content/de'
 languageCode = 'de-DE'
 languageDirection = 'ltr'
 languageName = 'Deutsch'
