@@ -3,7 +3,7 @@ defaultContentLanguage = 'en'
 defaultContentLanguageInSubdir = true
 disableDefaultLanguageRedirect = true
 
-disableKinds = ['sitemap', 'rss', 'taxonomy', 'term']
+disableKinds = ['rss', 'taxonomy', 'term']
 # -----------------------------------------------------------------------------
 # Languages
 # -----------------------------------------------------------------------------
