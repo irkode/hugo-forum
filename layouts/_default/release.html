@@ -1,0 +1,31 @@
+{{ $url := "https://api.github.com/repos/gohugoio/hugo/releases?per_page=50" }}
+
+
+<h2>Hugo Releases</h2>
+{{ $paged := partial "getRemotePaged" $url }}
+{{ if reflect.IsSlice $paged }}
+      {{ range $paged }}
+         <h3>Page {{ .links._self }}</h3>
+            <ul>
+               {{ range $k, $v := .items }}
+                  <li>
+                     <a href="{{ $v.html_url }}">{{ $v.name }}</a>
+                     {{ if $k }}
+                        <p>{{ $v.body | truncate 100 }}</p>
+                     {{ else }}
+                        <p>{{ $v.body | truncate 1000 | $.RenderString}}</p>
+                     {{ end }}
+                  </li>
+               {{ end }}
+               <li><b>....skipped to shorten...</b></li>
+               {{ range last 1 .items }}
+                  <li><a href="{{ .html_url }}">{{ or .name .tag_name }}</a></li>
+                  <p>{{ .body | truncate 100 | $.RenderString }}</p>
+               {{ end }}
+            </ul>
+         </li>
+      {{ end }}
+{{ else }}
+   <h2>Loading Releases from {{ $url }} failed</h2>
+   <p>{{ $paged }}</p>
+{{ end }}

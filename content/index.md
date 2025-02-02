@@ -1,3 +1,7 @@
+---
+title: Paged Rest API in Hugo
+---
+
 ## Paged Rest API with Hugo v0.143.0
 
 There's automatic following paged results as with Powershell `Invoke-RestMethod -FollowRelLink`. But we now have access

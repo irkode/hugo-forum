@@ -1,0 +1,11 @@
+{
+   "list-marker-space": {
+      "ul_multi": 2,
+      "ul_single": 2
+   },
+   "ul-indent": {
+      "indent": 3
+   },
+   "MD030": false,
+   "MD013": false
+}

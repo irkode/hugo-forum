@@ -1,8 +1,13 @@
 baseURL                = "https://example.com/"
 defaultContentLanguage = "en"
-title                  = "Hugo Forum Topic"
+title                  = "Hugo GetRemote - Paged REST API"
 theme                  = "hugo"
 disableKinds           = ['RSS', 'sitemap', 'taxonomy', 'term']
+
+[[menus.main]]
+   name    = 'Hugo Releases - Paged REST API (example)'
+   pageRef = '/releases'
+   weight  = 10
 
 [module]
    [[module.mounts]]

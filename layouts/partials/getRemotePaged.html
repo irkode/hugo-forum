@@ -1,0 +1,52 @@
+{{ $url := . }}
+
+{{ $headers := dict
+   "Accept" "application/vnd.github+json"
+   "X-GitHub-Api-Version" "2022-11-28"
+}}
+{{ with getenv "HUGO_GITHUB_TOKEN" }}
+   $headers = merge $headers (dict "Authorization" (printf "Bearer %s" .))
+{{ else }}
+   {{ warnidf "NOTOKEN" "anonymous access only. To use a github token set ENV:HUGO_GITHUB_TOKEN. Will help to overcome rate limits" }}
+{{ end }}
+
+{{ $opts := dict
+   "method" "get"
+   "responseHeaders" (slice "Link")
+   "headers" $headers
+}}
+
+{{ $pages := slice }}
+
+{{ with try (resources.GetRemote $url $opts) }}
+   {{ with .Err }}
+      {{ errorf ".Err %s" . }}
+   {{ else with .Value }}
+      {{ $links := partial "getLinks" .Data.Headers }}
+      {{ $links = merge $links (dict "_self" $url) }}
+      {{ $items := .Content | transform.Unmarshal }}
+      {{ $pages = slice (dict "links" $links "items" $items) }}
+      {{ with $links.next }}
+         {{ $pages = $pages | append (partial "getRemotePaged" .) }}
+      {{ end }}
+   {{ else }}
+      {{ warnf "Unable to get remote resource %q" $url }}
+   {{ end }}
+{{ end }}
+{{ return $pages }}
+
+{{ define "partials/getLinks" }}
+   {{ $links := dict }}
+   {{ with index .Link 0 }}
+      {{ range split . "," }}
+         {{ with split .  ";" }}
+            {{ $link := trim (index . 0) "<> " }}
+            {{ $rel :=  index (split (index . 1) `"`) 1 }}
+            {{ $links = merge $links (dict $rel $link) }}
+         {{ end }}
+      {{ end }}
+   {{ else }}
+      {{ warnf "NO LINK HERE %v" . }}
+   {{ end }}
+   {{ return $links }}
+{{ end }}
